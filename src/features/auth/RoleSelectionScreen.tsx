@@ -1,0 +1,93 @@
+import React from 'react';
+import { Headset, ChevronRight, ShieldCheck, GraduationCap, Users } from 'lucide-react';
+
+type PortalCategory = 'admin' | 'teacher' | 'student_parent';
+
+interface RoleSelectionScreenProps {
+  onSelectPortal: (portal: PortalCategory) => void;
+  onOpenSupport: () => void;
+}
+
+export const RoleSelectionScreen: React.FC<RoleSelectionScreenProps> = ({
+  onSelectPortal,
+  onOpenSupport,
+}) => {
+  return (
+    <div className="w-full max-w-sm mx-auto my-auto flex flex-col justify-between min-h-[85vh] py-3 px-1 sm:px-0 animate-fade-in">
+      {/* Top Branding Box Card */}
+      <div className="p-4 rounded-2xl bg-white dark:bg-[#2D2F31] border border-gray-200 dark:border-[#3C4043] shadow-xs text-center space-y-2.5">
+        <img
+          src="/logo.jpg"
+          alt="Gothwad Education Logo"
+          className="w-16 h-16 sm:w-18 sm:h-18 object-cover rounded-2xl mx-auto shadow-xs"
+        />
+        <h1 className="text-xl sm:text-2xl font-black text-gray-900 dark:text-gray-100 uppercase tracking-wide leading-tight">
+          GOTHWAD EDUCATION
+        </h1>
+      </div>
+
+      {/* Sub-heading divider text */}
+      <div className="text-center my-3">
+        <p className="text-[11px] sm:text-xs font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest">
+          CHOOSE YOUR ROLE TO CONTINUE
+        </p>
+      </div>
+
+      {/* 3 Slim & Clean Role Options */}
+      <div className="space-y-2.5 my-auto w-full">
+        {/* Administrator */}
+        <button
+          onClick={() => onSelectPortal('admin')}
+          className="w-full py-3 px-3.5 rounded-2xl bg-white dark:bg-[#2D2F31] hover:border-[#0494F4] text-gray-900 dark:text-gray-100 font-extrabold text-xs sm:text-sm flex items-center justify-between border border-gray-200 dark:border-[#3C4043] shadow-xs transition-all active:scale-[0.98] group uppercase"
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="p-1.5 rounded-xl bg-sky-50 dark:bg-sky-950/40 text-[#0494F4] shrink-0">
+              <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
+            </div>
+            <span className="text-left truncate tracking-tight">CONTINUE AS ADMINISTRATOR</span>
+          </div>
+          <ChevronRight className="w-4 h-4 text-gray-400 shrink-0 group-hover:text-[#0494F4] ml-1.5" />
+        </button>
+
+        {/* Teacher & Staff */}
+        <button
+          onClick={() => onSelectPortal('teacher')}
+          className="w-full py-3 px-3.5 rounded-2xl bg-white dark:bg-[#2D2F31] hover:border-[#0494F4] text-gray-900 dark:text-gray-100 font-extrabold text-xs sm:text-sm flex items-center justify-between border border-gray-200 dark:border-[#3C4043] shadow-xs transition-all active:scale-[0.98] group uppercase"
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="p-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-500 shrink-0">
+              <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5" />
+            </div>
+            <span className="text-left truncate tracking-tight">CONTINUE AS TEACHER & STAFF</span>
+          </div>
+          <ChevronRight className="w-4 h-4 text-gray-400 shrink-0 group-hover:text-[#0494F4] ml-1.5" />
+        </button>
+
+        {/* Parent & Student */}
+        <button
+          onClick={() => onSelectPortal('student_parent')}
+          className="w-full py-3 px-3.5 rounded-2xl bg-white dark:bg-[#2D2F31] hover:border-[#0494F4] text-gray-900 dark:text-gray-100 font-extrabold text-xs sm:text-sm flex items-center justify-between border border-gray-200 dark:border-[#3C4043] shadow-xs transition-all active:scale-[0.98] group uppercase"
+        >
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="p-1.5 rounded-xl bg-purple-50 dark:bg-purple-950/40 text-purple-500 shrink-0">
+              <Users className="w-4 h-4 sm:w-5 sm:h-5" />
+            </div>
+            <span className="text-left truncate tracking-tight">CONTINUE AS PARENT & STUDENT</span>
+          </div>
+          <ChevronRight className="w-4 h-4 text-gray-400 shrink-0 group-hover:text-[#0494F4] ml-1.5" />
+        </button>
+      </div>
+
+      {/* Help & Support Card (Slimmer) */}
+      <div className="pt-3">
+        <button
+          onClick={onOpenSupport}
+          className="w-full py-2.5 px-3 rounded-2xl bg-white dark:bg-[#2D2F31] border border-gray-200 dark:border-[#3C4043] flex items-center justify-center gap-2 text-[11px] sm:text-xs font-black text-gray-700 dark:text-gray-200 hover:border-[#0494F4] transition-all shadow-xs uppercase tracking-wider"
+        >
+          <Headset className="w-3.5 h-3.5 text-[#0494F4]" />
+          <span>HELP & SUPPORT</span>
+        </button>
+      </div>
+    </div>
+  );
+};

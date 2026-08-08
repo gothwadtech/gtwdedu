@@ -1,0 +1,331 @@
+import { Student, Staff, AttendanceRecord, FeeStructure, FeePayment, Homework, HomeworkSubmission, ReportCard, TimetableSlot, Notice } from '../types';
+
+export const INITIAL_STUDENTS: Student[] = [
+  {
+    id: 'st-1',
+    roll_number: '1001',
+    first_name: 'Aarav',
+    last_name: 'Gothwad',
+    class_name: 'Grade 10-A',
+    grade: '10',
+    section: 'A',
+    parent_name: 'Vikram Gothwad',
+    parent_phone: '+91 98765 11111',
+    parent_email: 'parent@gothwad.edu',
+    address: 'Flat 402, Royal Palms, Jaipur, Rajasthan',
+    dob: '2010-05-15',
+    gender: 'male',
+    blood_group: 'O+',
+    avatar_url: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=250',
+    admission_date: '2020-04-01',
+    status: 'active',
+  },
+  {
+    id: 'st-2',
+    roll_number: '1002',
+    first_name: 'Ananya',
+    last_name: 'Sharma',
+    class_name: 'Grade 10-A',
+    grade: '10',
+    section: 'A',
+    parent_name: 'Ramesh Sharma',
+    parent_phone: '+91 98765 22222',
+    parent_email: 'ramesh.sharma@gmail.com',
+    address: '12-B Park Avenue, Jaipur',
+    dob: '2010-08-20',
+    gender: 'female',
+    blood_group: 'B+',
+    avatar_url: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=250',
+    admission_date: '2020-04-01',
+    status: 'active',
+  },
+  {
+    id: 'st-3',
+    roll_number: '1003',
+    first_name: 'Rohan',
+    last_name: 'Mehta',
+    class_name: 'Grade 10-A',
+    grade: '10',
+    section: 'A',
+    parent_name: 'Sanjay Mehta',
+    parent_phone: '+91 98765 33333',
+    parent_email: 'sanjay.mehta@gmail.com',
+    address: 'Sector 5, Vidhyadhar Nagar, Jaipur',
+    dob: '2010-02-10',
+    gender: 'male',
+    blood_group: 'A+',
+    avatar_url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=250',
+    admission_date: '2021-04-01',
+    status: 'active',
+  },
+  {
+    id: 'st-4',
+    roll_number: '1004',
+    first_name: 'Diya',
+    last_name: 'Verma',
+    class_name: 'Grade 10-B',
+    grade: '10',
+    section: 'B',
+    parent_name: 'Alok Verma',
+    parent_phone: '+91 98765 44444',
+    parent_email: 'alok.verma@gmail.com',
+    address: 'House 88, Malviya Nagar, Jaipur',
+    dob: '2010-11-05',
+    gender: 'female',
+    blood_group: 'AB+',
+    avatar_url: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=250',
+    admission_date: '2020-04-01',
+    status: 'active',
+  },
+  {
+    id: 'st-5',
+    roll_number: '1005',
+    first_name: 'Kabir',
+    last_name: 'Singh',
+    class_name: 'Grade 12-Science',
+    grade: '12',
+    section: 'Science',
+    parent_name: 'Gurpreet Singh',
+    parent_phone: '+91 98765 55555',
+    parent_email: 'gurpreet.singh@gmail.com',
+    address: '45-C Vaishali Nagar, Jaipur',
+    dob: '2008-03-25',
+    gender: 'male',
+    blood_group: 'O-',
+    avatar_url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=250',
+    admission_date: '2018-04-01',
+    status: 'active',
+  }
+];
+
+export const INITIAL_STAFF: Staff[] = [
+  {
+    id: 'tf-1',
+    employee_code: 'EMP-101',
+    first_name: 'Sunita',
+    last_name: 'Sharma',
+    email: 'teacher@gothwad.edu',
+    phone: '+91 98111 22334',
+    designation: 'Class Teacher & PGT Mathematics',
+    department: 'Mathematics',
+    joining_date: '2018-06-15',
+    qualification: 'M.Sc Mathematics, B.Ed',
+    assigned_classes: ['Grade 10-A', 'Grade 10-B', 'Grade 12-Science'],
+    assigned_subjects: ['Mathematics'],
+    status: 'active',
+    avatar_url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=250',
+  },
+  {
+    id: 'tf-2',
+    employee_code: 'EMP-102',
+    first_name: 'Dr. Amitabh',
+    last_name: 'Roy',
+    email: 'amitabh.roy@gothwad.edu',
+    phone: '+91 98222 33445',
+    designation: 'PGT Physics & Science HOD',
+    department: 'Science',
+    joining_date: '2016-04-01',
+    qualification: 'Ph.D Physics, M.Ed',
+    assigned_classes: ['Grade 10-A', 'Grade 12-Science'],
+    assigned_subjects: ['Physics', 'Science'],
+    status: 'active',
+    avatar_url: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=250',
+  },
+  {
+    id: 'tf-3',
+    employee_code: 'EMP-103',
+    first_name: 'Priya',
+    last_name: 'Chawla',
+    email: 'priya.chawla@gothwad.edu',
+    phone: '+91 98333 44556',
+    designation: 'TGT English Literature',
+    department: 'English',
+    joining_date: '2021-08-10',
+    qualification: 'M.A English, B.Ed',
+    assigned_classes: ['Grade 9-A', 'Grade 10-A', 'Grade 10-B'],
+    assigned_subjects: ['English Literature'],
+    status: 'active',
+    avatar_url: 'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&q=80&w=250',
+  }
+];
+
+export const INITIAL_FEES: FeePayment[] = [
+  {
+    id: 'fee-1',
+    student_id: 'st-1',
+    student_name: 'Aarav Gothwad',
+    class_name: 'Grade 10-A',
+    fee_structure_id: 'fs-term1',
+    title: 'Term 1 Tuition & Annual Composite Fee (2026-27)',
+    amount_due: 28500,
+    amount_paid: 28500,
+    discount: 0,
+    payment_status: 'paid',
+    payment_method: 'UPI',
+    transaction_id: 'UPI/62819028471/GOTHWAD',
+    paid_at: '2026-04-10 11:30 AM',
+    due_date: '2026-04-15',
+    receipt_no: 'REC-2026-00412'
+  },
+  {
+    id: 'fee-2',
+    student_id: 'st-1',
+    student_name: 'Aarav Gothwad',
+    class_name: 'Grade 10-A',
+    fee_structure_id: 'fs-term2',
+    title: 'Term 2 Tuition & Science Lab Charges',
+    amount_due: 24000,
+    amount_paid: 0,
+    discount: 0,
+    payment_status: 'pending',
+    due_date: '2026-09-15',
+  },
+  {
+    id: 'fee-3',
+    student_id: 'st-2',
+    student_name: 'Ananya Sharma',
+    class_name: 'Grade 10-A',
+    fee_structure_id: 'fs-term1',
+    title: 'Term 1 Tuition & Annual Composite Fee',
+    amount_due: 28500,
+    amount_paid: 15000,
+    discount: 0,
+    payment_status: 'partially_paid',
+    payment_method: 'Card',
+    transaction_id: 'TXN/77281938/ICICI',
+    paid_at: '2026-04-12 04:15 PM',
+    due_date: '2026-04-15',
+    receipt_no: 'REC-2026-00418'
+  }
+];
+
+export const INITIAL_HOMEWORK: Homework[] = [
+  {
+    id: 'hw-1',
+    title: 'Quadratic Equations Word Problems',
+    description: 'Solve Exercise 4.2 Problems 1 to 15 in Exercise Register. Focus on real-life distance-time speed word problems.',
+    subject: 'Mathematics',
+    class_name: 'Grade 10-A',
+    assigned_by: 'Mrs. Sunita Sharma',
+    assigned_date: '2026-08-05',
+    due_date: '2026-08-10',
+    max_marks: 20
+  },
+  {
+    id: 'hw-2',
+    title: 'Refraction & Lens Formula Numerical Practice',
+    description: 'Complete questions from Page 182-185 on convex and concave mirror/lens combinations.',
+    subject: 'Physics',
+    class_name: 'Grade 10-A',
+    assigned_by: 'Dr. Amitabh Roy',
+    assigned_date: '2026-08-06',
+    due_date: '2026-08-12',
+    max_marks: 15
+  },
+  {
+    id: 'hw-3',
+    title: 'Essay Writing: Technological Advancement in K-12',
+    description: 'Write a 300-400 word essay analyzing the role of AI and mobile learning apps in modern classrooms.',
+    subject: 'English Literature',
+    class_name: 'Grade 10-A',
+    assigned_by: 'Mrs. Priya Chawla',
+    assigned_date: '2026-08-07',
+    due_date: '2026-08-14',
+    max_marks: 25
+  }
+];
+
+export const INITIAL_SUBMISSIONS: HomeworkSubmission[] = [
+  {
+    id: 'sub-1',
+    homework_id: 'hw-1',
+    student_id: 'st-1',
+    student_name: 'Aarav Gothwad',
+    submission_text: 'Attached completed exercise notebook solution. Verified all 15 word problems using quadratic formula.',
+    submitted_at: '2026-08-07 06:45 PM',
+    status: 'evaluated',
+    marks_obtained: 19,
+    feedback: 'Excellent step-by-step working! Watch out for negative roots in speed equations.'
+  }
+];
+
+export const INITIAL_NOTICES: Notice[] = [
+  {
+    id: 'not-1',
+    title: 'Mid-Term Periodic Examination Schedule 2026-27',
+    content: 'The Mid-Term Examination for Grades 1 to 12 will commence on September 1, 2026. The detailed date-sheet and syllabus breakdown have been uploaded to the student dashboard.',
+    category: 'exam',
+    target_audience: 'all',
+    posted_by: 'Dr. Rajesh Gothwad (Principal)',
+    posted_at: '2026-08-01',
+    is_pinned: true
+  },
+  {
+    id: 'not-2',
+    title: 'Independence Day Cultural Fest & Flag Hoisting Ceremony',
+    content: 'All students and staff members are warmly invited to celebrate the 80th Independence Day on August 15, 2026, at 08:00 AM in the Main Assembly Ground.',
+    category: 'event',
+    target_audience: 'all',
+    posted_by: 'Cultural Committee',
+    posted_at: '2026-08-04',
+    is_pinned: true
+  },
+  {
+    id: 'not-3',
+    title: 'Grade 10 Parent-Teacher Meeting (PTM)',
+    content: 'Parent-Teacher interaction for Grade 10-A, 10-B, and 10-C will take place on Saturday, August 16, from 09:00 AM to 01:00 PM.',
+    category: 'academic',
+    target_audience: 'parents',
+    target_class: 'Grade 10-A',
+    posted_by: 'Mrs. Sunita Sharma',
+    posted_at: '2026-08-06',
+    is_pinned: false
+  }
+];
+
+export const INITIAL_TIMETABLE: TimetableSlot[] = [
+  { id: 'tt-1', day: 'Monday', period: 1, time_start: '08:00 AM', time_end: '08:45 AM', class_name: 'Grade 10-A', subject: 'Mathematics', teacher_name: 'Mrs. Sunita Sharma', room_number: 'Room 301' },
+  { id: 'tt-2', day: 'Monday', period: 2, time_start: '08:45 AM', time_end: '09:30 AM', class_name: 'Grade 10-A', subject: 'Physics', teacher_name: 'Dr. Amitabh Roy', room_number: 'Lab 2' },
+  { id: 'tt-3', day: 'Monday', period: 3, time_start: '09:30 AM', time_end: '10:15 AM', class_name: 'Grade 10-A', subject: 'English Literature', teacher_name: 'Mrs. Priya Chawla', room_number: 'Room 301' },
+  { id: 'tt-4', day: 'Monday', period: 4, time_start: '10:30 AM', time_end: '11:15 AM', class_name: 'Grade 10-A', subject: 'Chemistry', teacher_name: 'Dr. V. K. Gupta', room_number: 'Lab 1' },
+  { id: 'tt-5', day: 'Monday', period: 5, time_start: '11:15 AM', time_end: '12:00 PM', class_name: 'Grade 10-A', subject: 'Social Studies', teacher_name: 'Mr. R. K. Das', room_number: 'Room 301' },
+  { id: 'tt-6', day: 'Tuesday', period: 1, time_start: '08:00 AM', time_end: '08:45 AM', class_name: 'Grade 10-A', subject: 'Computer Science', teacher_name: 'Er. Nikhil Gothwad', room_number: 'IT Lab 1' },
+  { id: 'tt-7', day: 'Tuesday', period: 2, time_start: '08:45 AM', time_end: '09:30 AM', class_name: 'Grade 10-A', subject: 'Mathematics', teacher_name: 'Mrs. Sunita Sharma', room_number: 'Room 301' },
+];
+
+export const INITIAL_REPORT_CARDS: ReportCard[] = [
+  {
+    id: 'rc-1',
+    student_id: 'st-1',
+    student_name: 'Aarav Gothwad',
+    roll_number: '1001',
+    class_name: 'Grade 10-A',
+    term: 'Unit Test 1 (2026-27)',
+    academic_year: '2026-2027',
+    subjects: [
+      { subject: 'Mathematics', max_marks: 100, marks_obtained: 96, grade: 'A1', remarks: 'Outstanding analytical skills' },
+      { subject: 'Physics', max_marks: 100, marks_obtained: 92, grade: 'A1', remarks: 'Strong concept mastery' },
+      { subject: 'Chemistry', max_marks: 100, marks_obtained: 88, grade: 'A2', remarks: 'Good lab work' },
+      { subject: 'English Literature', max_marks: 100, marks_obtained: 90, grade: 'A1', remarks: 'Articulate expression' },
+      { subject: 'Computer Science', max_marks: 100, marks_obtained: 98, grade: 'A1', remarks: 'Exceptional coding logic' },
+    ],
+    total_marks: 500,
+    obtained_marks: 464,
+    percentage: 92.8,
+    overall_grade: 'A1',
+    rank_in_class: 2,
+    attendance_percentage: 96.5,
+    teacher_remarks: 'Aarav is a highly disciplined student with consistent academic excellence and leadership skills.',
+    issued_date: '2026-07-25'
+  }
+];
+
+export const INITIAL_ATTENDANCE: AttendanceRecord[] = [
+  { id: 'att-1', student_id: 'st-1', student_name: 'Aarav Gothwad', roll_number: '1001', class_name: 'Grade 10-A', date: '2026-08-01', status: 'present', marked_by: 'Mrs. Sunita Sharma' },
+  { id: 'att-2', student_id: 'st-1', student_name: 'Aarav Gothwad', roll_number: '1001', class_name: 'Grade 10-A', date: '2026-08-02', status: 'present', marked_by: 'Mrs. Sunita Sharma' },
+  { id: 'att-3', student_id: 'st-1', student_name: 'Aarav Gothwad', roll_number: '1001', class_name: 'Grade 10-A', date: '2026-08-03', status: 'present', marked_by: 'Mrs. Sunita Sharma' },
+  { id: 'att-4', student_id: 'st-1', student_name: 'Aarav Gothwad', roll_number: '1001', class_name: 'Grade 10-A', date: '2026-08-04', status: 'late', marked_by: 'Mrs. Sunita Sharma', remarks: 'School bus delay' },
+  { id: 'att-5', student_id: 'st-1', student_name: 'Aarav Gothwad', roll_number: '1001', class_name: 'Grade 10-A', date: '2026-08-05', status: 'present', marked_by: 'Mrs. Sunita Sharma' },
+  { id: 'att-6', student_id: 'st-1', student_name: 'Aarav Gothwad', roll_number: '1001', class_name: 'Grade 10-A', date: '2026-08-06', status: 'present', marked_by: 'Mrs. Sunita Sharma' },
+  { id: 'att-7', student_id: 'st-1', student_name: 'Aarav Gothwad', roll_number: '1001', class_name: 'Grade 10-A', date: '2026-08-07', status: 'present', marked_by: 'Mrs. Sunita Sharma' },
+];
