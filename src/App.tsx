@@ -9,7 +9,6 @@ import { Sidebar } from './components/layout/Sidebar';
 import { MobileContainer } from './components/layout/MobileContainer';
 import { LoginScreen } from './features/auth/LoginScreen';
 import { StudentProfileModal } from './components/StudentProfileModal';
-import { NavigationDrawer } from './components/NavigationDrawer';
 
 // Admin Views
 import { StudentMgmt } from './features/admin/StudentMgmt';
@@ -17,6 +16,9 @@ import { StaffMgmt } from './features/admin/StaffMgmt';
 import { FeeCollect } from './features/admin/FeeCollect';
 import { Analytics } from './features/admin/Analytics';
 import { Notices } from './features/admin/Notices';
+
+// Management Views
+import { ManagementDashboard } from './features/manage/ManagementDashboard';
 
 // Teacher Views
 import { AttendanceMarking } from './features/teacher/AttendanceMarking';
@@ -34,21 +36,28 @@ import { NoticeBoard } from './features/student/NoticeBoard';
 
 const MainAppContent: React.FC = () => {
   const { role, isAuthenticated } = useAuth();
-  const [activeTab, setActiveTab] = useState<string>('students');
+  const [activeTab, setActiveTab] = useState<string>('dashboard');
 
-  // Drawers and Modal state
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  // Modal state
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
   // Auto set activeTab when role changes if tab is not valid for role
   React.useEffect(() => {
     if (role === 'admin') {
-      if (!['students', 'staff', 'fees', 'analytics', 'notices'].includes(activeTab)) {
-        setActiveTab('students');
+      if (!['dashboard', 'staff', 'students', 'fees', 'analytics', 'notices'].includes(activeTab)) {
+        setActiveTab('dashboard');
+      }
+    } else if (role === 'management') {
+      if (!['dashboard', 'analytics', 'fees', 'staff', 'notices'].includes(activeTab)) {
+        setActiveTab('dashboard');
       }
     } else if (role === 'teacher') {
-      if (!['attendance', 'homework', 'results', 'timetable', 'notices'].includes(activeTab)) {
-        setActiveTab('attendance');
+      if (!['dashboard', 'attendance', 'homework', 'results', 'timetable', 'notices'].includes(activeTab)) {
+        setActiveTab('dashboard');
+      }
+    } else if (role === 'staff') {
+      if (!['dashboard', 'fees', 'students', 'notices'].includes(activeTab)) {
+        setActiveTab('dashboard');
       }
     } else {
       if (!['dashboard', 'my-attendance', 'fee-payments', 'my-homework', 'report-cards', 'notice-board'].includes(activeTab)) {
@@ -62,10 +71,14 @@ const MainAppContent: React.FC = () => {
   }
 
   const handleNavigateTab = (tabId: string) => {
-    if (role === 'admin' && !['students', 'staff', 'fees', 'analytics', 'notices'].includes(tabId)) {
-      setActiveTab('students');
-    } else if (role === 'teacher' && !['attendance', 'homework', 'results', 'timetable', 'notices'].includes(tabId)) {
-      setActiveTab('attendance');
+    if (role === 'admin' && !['dashboard', 'staff', 'students', 'fees', 'analytics', 'notices'].includes(tabId)) {
+      setActiveTab('dashboard');
+    } else if (role === 'management' && !['dashboard', 'analytics', 'fees', 'staff', 'notices'].includes(tabId)) {
+      setActiveTab('dashboard');
+    } else if (role === 'teacher' && !['dashboard', 'attendance', 'homework', 'results', 'timetable', 'notices'].includes(tabId)) {
+      setActiveTab('dashboard');
+    } else if (role === 'staff' && !['dashboard', 'fees', 'students', 'notices'].includes(tabId)) {
+      setActiveTab('dashboard');
     } else if ((role === 'student' || role === 'parent') && !['dashboard', 'my-attendance', 'fee-payments', 'my-homework', 'report-cards', 'notice-board'].includes(tabId)) {
       setActiveTab('dashboard');
     } else {
@@ -76,10 +89,12 @@ const MainAppContent: React.FC = () => {
   const renderActiveView = () => {
     if (role === 'admin') {
       switch (activeTab) {
-        case 'students':
-          return <StudentMgmt />;
+        case 'dashboard':
+          return <Analytics />;
         case 'staff':
           return <StaffMgmt />;
+        case 'students':
+          return <StudentMgmt />;
         case 'fees':
           return <FeeCollect />;
         case 'analytics':
@@ -87,12 +102,30 @@ const MainAppContent: React.FC = () => {
         case 'notices':
           return <Notices />;
         default:
-          return <StudentMgmt />;
+          return <Analytics />;
+      }
+    }
+
+    if (role === 'management') {
+      switch (activeTab) {
+        case 'dashboard':
+          return <ManagementDashboard />;
+        case 'analytics':
+          return <Analytics />;
+        case 'fees':
+          return <FeeCollect />;
+        case 'staff':
+          return <StaffMgmt />;
+        case 'notices':
+          return <Notices />;
+        default:
+          return <ManagementDashboard />;
       }
     }
 
     if (role === 'teacher') {
       switch (activeTab) {
+        case 'dashboard':
         case 'attendance':
           return <AttendanceMarking />;
         case 'homework':
@@ -105,6 +138,20 @@ const MainAppContent: React.FC = () => {
           return <Notices />;
         default:
           return <AttendanceMarking />;
+      }
+    }
+
+    if (role === 'staff') {
+      switch (activeTab) {
+        case 'dashboard':
+        case 'fees':
+          return <FeeCollect />;
+        case 'students':
+          return <StudentMgmt />;
+        case 'notices':
+          return <Notices />;
+        default:
+          return <FeeCollect />;
       }
     }
 
@@ -128,10 +175,10 @@ const MainAppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-[#202124] text-gray-900 dark:text-gray-100 flex flex-col font-sans transition-colors duration-200">
+    <div className="min-h-screen bg-gray-50 dark:bg-[#202124] text-gray-900 dark:text-gray-100 flex flex-col font-sans transition-colors duration-200 pb-16 md:pb-0">
       <TopHeader
-        onOpenDrawer={() => setIsDrawerOpen(true)}
         onOpenProfileModal={() => setIsProfileModalOpen(true)}
+        onNavigateTab={(tabId) => handleNavigateTab(tabId)}
       />
       
       <div className="flex-1 flex max-w-7xl w-full mx-auto">
@@ -143,14 +190,7 @@ const MainAppContent: React.FC = () => {
 
       <BottomNav role={role} activeTab={activeTab} onChangeTab={(tabId) => handleNavigateTab(tabId)} />
 
-      {/* Screenshot 3 Side Drawer */}
-      <NavigationDrawer
-        isOpen={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-        onNavigateTab={(tabId) => handleNavigateTab(tabId)}
-      />
-
-      {/* Screenshot 1 Profile & Sibling Switcher Modal */}
+      {/* Full Screen Profile View */}
       <StudentProfileModal
         isOpen={isProfileModalOpen}
         onClose={() => setIsProfileModalOpen(false)}

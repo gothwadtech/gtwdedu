@@ -1,4 +1,4 @@
-export type UserRole = 'admin' | 'teacher' | 'student' | 'parent';
+export type UserRole = 'admin' | 'management' | 'teacher' | 'staff' | 'student' | 'parent';
 
 export interface UserProfile {
   id: string;
@@ -9,7 +9,7 @@ export interface UserProfile {
   phone?: string;
   class_name?: string; // For student/parent, e.g. "Grade 10-A"
   student_id?: string; // Reference ID for students/parents
-  designation?: string; // For teachers/staff, e.g. "Senior Math Teacher"
+  designation?: string; // For teachers/staff/management
   subject_specialization?: string[];
   created_at: string;
 }

@@ -13,6 +13,7 @@ import {
   Calendar,
   Home,
   ShieldAlert,
+  Building2
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -26,29 +27,45 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, activeTab, onChangeTab }
     switch (role) {
       case 'admin':
         return [
-          { id: 'students', label: 'Student Directory', icon: <Users className="w-5 h-5" /> },
+          { id: 'dashboard', label: 'Home Overview', icon: <Home className="w-5 h-5" /> },
           { id: 'staff', label: 'Staff & Teachers', icon: <Briefcase className="w-5 h-5" /> },
+          { id: 'students', label: 'Classes & Students', icon: <Users className="w-5 h-5" /> },
           { id: 'fees', label: 'Fee Collection', icon: <CreditCard className="w-5 h-5" /> },
           { id: 'analytics', label: 'School Analytics', icon: <BarChart3 className="w-5 h-5" /> },
           { id: 'notices', label: 'Official Circulars', icon: <Megaphone className="w-5 h-5" /> },
         ];
+      case 'management':
+        return [
+          { id: 'dashboard', label: 'Executive Board', icon: <Building2 className="w-5 h-5" /> },
+          { id: 'analytics', label: 'Trust Analytics', icon: <BarChart3 className="w-5 h-5" /> },
+          { id: 'fees', label: 'Capital Budget', icon: <CreditCard className="w-5 h-5" /> },
+          { id: 'staff', label: 'Faculty & Staff Audit', icon: <Briefcase className="w-5 h-5" /> },
+          { id: 'notices', label: 'Trustee Circulars', icon: <Megaphone className="w-5 h-5" /> },
+        ];
       case 'teacher':
         return [
+          { id: 'dashboard', label: 'Home Overview', icon: <Home className="w-5 h-5" /> },
           { id: 'attendance', label: 'Daily Attendance', icon: <CheckSquare className="w-5 h-5" /> },
           { id: 'homework', label: 'Homework & Tasks', icon: <BookOpen className="w-5 h-5" /> },
           { id: 'results', label: 'Result & Marks Entry', icon: <Award className="w-5 h-5" /> },
           { id: 'timetable', label: 'Class Timetable', icon: <Calendar className="w-5 h-5" /> },
           { id: 'notices', label: 'Notice Stream', icon: <Megaphone className="w-5 h-5" /> },
         ];
+      case 'staff':
+        return [
+          { id: 'dashboard', label: 'Counter Desk', icon: <CreditCard className="w-5 h-5" /> },
+          { id: 'students', label: 'Student Records', icon: <Users className="w-5 h-5" /> },
+          { id: 'notices', label: 'Notice Board', icon: <Megaphone className="w-5 h-5" /> },
+        ];
       case 'student':
       case 'parent':
       default:
         return [
-          { id: 'dashboard', label: 'Overview Dashboard', icon: <Home className="w-5 h-5" /> },
-          { id: 'my-attendance', label: 'My Attendance Calendar', icon: <CheckSquare className="w-5 h-5" /> },
-          { id: 'fee-payments', label: 'Fee Statements & Pay', icon: <CreditCard className="w-5 h-5" /> },
+          { id: 'dashboard', label: 'Home Dashboard', icon: <Home className="w-5 h-5" /> },
+          { id: 'my-attendance', label: 'My Attendance', icon: <CheckSquare className="w-5 h-5" /> },
+          { id: 'fee-payments', label: 'Fee Payments', icon: <CreditCard className="w-5 h-5" /> },
           { id: 'my-homework', label: 'Homework Assignments', icon: <BookOpen className="w-5 h-5" /> },
-          { id: 'report-cards', label: 'Report Cards & Grades', icon: <Award className="w-5 h-5" /> },
+          { id: 'report-cards', label: 'Report Cards', icon: <Award className="w-5 h-5" /> },
           { id: 'notice-board', label: 'Notice Board', icon: <Megaphone className="w-5 h-5" /> },
         ];
     }

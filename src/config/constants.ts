@@ -47,12 +47,28 @@ export const DEMO_ACCOUNTS = [
     description: 'Full Administrative Controls & School-wide Analytics'
   },
   {
+    role: 'management' as const,
+    name: 'Shri Suresh Gothwad',
+    email: 'management@gothwad.edu',
+    designation: 'Chairman & Trustee Board',
+    avatar_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250',
+    description: 'Institutional Capital, Trustee Policy & Governance'
+  },
+  {
     role: 'teacher' as const,
     name: 'Mrs. Sunita Sharma',
     email: 'teacher@gothwad.edu',
     designation: 'Class Teacher Grade 10-A (PGT Mathematics)',
     avatar_url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=250',
     description: 'Attendance, Homework, Marks Entry, & Schedule'
+  },
+  {
+    role: 'staff' as const,
+    name: 'Ramesh Chandra',
+    email: 'staff@gothwad.edu',
+    designation: 'Senior Accountant & Support Staff',
+    avatar_url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=250',
+    description: 'Fee Records, Staff Accounts, & Administrative Counter'
   },
   {
     role: 'student' as const,
@@ -69,7 +85,7 @@ export const DEMO_ACCOUNTS = [
     email: 'parent@gothwad.edu',
     class_name: 'Grade 10-A',
     student_id: 'GE-2026-10042',
-    avatar_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250',
+    avatar_url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=250',
     description: 'Parent Portal for Fee Payments, Progress, & Attendance'
   }
 ];
